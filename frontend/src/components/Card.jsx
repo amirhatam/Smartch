@@ -29,7 +29,6 @@ const Card = (props) => {
                     </p>
                     <MDBCardBody className='text-center '>
                         <MDBCardTitle className='h5'>
-                            {/* <MDBIcon icon="film" />  */}
                             {props.title}</MDBCardTitle>
                         <hr />
                         <h5>Release date : <strong className='text-info'> {props.release_date}</strong></h5>

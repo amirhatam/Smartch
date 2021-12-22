@@ -77,6 +77,8 @@ export default function Home() {
         return (
             <MDBView >
                 <MDBContainer className='mt-5'>
+
+                    <h1 className="mt-5 font-weight-light text-center" ><MDBIcon icon="film" /> Movies In Theaters</h1>
                     <Slider style={{ overflow: "hidden", maxHeight: "630px" }} {...settings}>
                         <div className=" d-flex">
                             {movies.map((elem, index) => {

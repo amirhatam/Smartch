@@ -18,7 +18,7 @@ class NavbarPage extends Component {
       <MDBNavbar color="indigo" dark expand="md">
         <MDBContainer>
           <MDBNavbarBrand>
-            <strong className="white-text">Movies</strong>
+            <strong className="white-text"><MDBIcon icon="film" /> Movies</strong>
           </MDBNavbarBrand>
           <MDBNavbarToggler onClick={this.toggleCollapse} />
           <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
