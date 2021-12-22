@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBCardGroup } from 'mdbreact';
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBCardGroup, MDBIcon } from 'mdbreact';
 
 
 const Card = (props) => {
@@ -24,14 +24,17 @@ const Card = (props) => {
                         className='px-5 pt-5'
                     />
                     <MDBCardBody className='text-center '>
-                        <MDBCardTitle className='h5'>{props.title}</MDBCardTitle>
+                        <MDBCardTitle className='h5'>
+                            {/* <MDBIcon icon="film" />  */}
+                            {props.title}</MDBCardTitle>
                         <hr />
-                        <div style={{ height: '200px' }}>
+                        <h5>Release date : <strong className='text-info'> {props.release_date}</strong></h5>
+                        <div className='my-4'
+                            style={{ height: '200px' }}>
                             <MDBCardText className='text-justify'>
                                 {props.overview}
                             </MDBCardText>
                         </div>
-                        <h5>Release date : {props.release_date}</h5>
 
                     </MDBCardBody>
                 </MDBCard>

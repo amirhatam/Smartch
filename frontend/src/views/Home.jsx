@@ -2,7 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { MDBRow, MDBContainer, MDBView, MDBIcon, MDBBtn } from 'mdbreact';
 import axios from 'axios'
 import Card from '../components/Card';
+import Slider from "react-slick";
 
+
+
+const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 10000,
+    autoplaySpeed: 1000,
+    pauseOnHover: true,
+    cssEase: "linear",
+};
 export default function Home() {
     const [movies, setMovies] = useState("")
     const [movieName, setMovieName] = useState("");
@@ -64,8 +77,17 @@ export default function Home() {
         return (
             <MDBView >
                 <MDBContainer className='mt-5'>
+                    <Slider style={{ overflow: "hidden", maxHeight: "565px" }} {...settings}>
+                        <div className=" d-flex">
+                            {movies.map((elem, index) => {
+                                return <Card key={index} release_date={elem.release_date} poster_path={elem.poster_path} />;
+                            })}
+                        </div>
+                        <div></div>
+                        <div></div>
+                    </Slider>
 
-                    <MDBRow className="justify-content-center mb-5">
+                    <MDBRow className="justify-content-center my-5">
                         <div>
                             <input type="text"
                                 onChange={(event) => setMovieName(event.target.value)}
