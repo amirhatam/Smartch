@@ -68,7 +68,7 @@ export default function Home() {
         }
     }
 
-    // console.log(movies);
+    console.log("movies", movies);
     // console.log("localStorage", localStorage);
 
     if (!movies) {
@@ -77,10 +77,15 @@ export default function Home() {
         return (
             <MDBView >
                 <MDBContainer className='mt-5'>
-                    <Slider style={{ overflow: "hidden", maxHeight: "565px" }} {...settings}>
+                    <Slider style={{ overflow: "hidden", maxHeight: "630px" }} {...settings}>
                         <div className=" d-flex">
                             {movies.map((elem, index) => {
-                                return <Card key={index} release_date={elem.release_date} poster_path={elem.poster_path} />;
+                                return <Card key={index}
+                                    release_date={elem.release_date}
+                                    poster_path={elem.poster_path}
+                                    vote_average={elem.vote_average}
+                                    vote_count={elem.vote_count}
+                                />;
                             })}
                         </div>
                         <div></div>
@@ -103,13 +108,16 @@ export default function Home() {
                     </MDBRow>
 
                     <MDBRow className="justify-content-around">
-                        {movies.map((elem) => {
+                        {movies.map((elem, index) => {
                             return <Card
+                                key={index}
                                 poster_path={elem.poster_path}
                                 title={elem.title}
                                 overview={elem.overview}
                                 release_date={elem.release_date}
                                 onClick={userFavorites}
+                                vote_average={elem.vote_average}
+                                vote_count={elem.vote_count}
                             //  {...elem} 
                             />
                         })

@@ -23,6 +23,10 @@ const Card = (props) => {
                         alt='MDBCard image cap'
                         className='px-5 pt-5'
                     />
+                    <p className='text-center mt-4'>
+                        Average vote: <strong className='text-info h5 mr-3'>{props.vote_average}</strong>
+                        Number of votes: <strong className='text-info h5 '>{props.vote_count}</strong>
+                    </p>
                     <MDBCardBody className='text-center '>
                         <MDBCardTitle className='h5'>
                             {/* <MDBIcon icon="film" />  */}
