@@ -1,68 +1,36 @@
-const userModel = require("../models/user")
-const bcryptjs = require("bcryptjs")
-const jwt = require("jsonwebtoken")
+const express = require("express")
+const cors = require("cors")
+const mongoose = require("mongoose")
+const { debug } = require("./middlewares/debug")
+const router = express.Router()
 
-const signup = async (req, res) => {
-    try {
-        const {
-            username,
-            password,
+const { port, mongoURL } = require('./utils/config')
 
-        } = req.body
-        const passwordHashed = bcryptjs.hashSync(password)
+const authRoutes = require("./routes/authRoutes")
+const usersRoutes = require("./routes/userRoutes")
 
-        const user = await userModel.create({
-            username,
-            password: passwordHashed,
-        })
 
-        res.json({ message: "User was created!", id: user._id })
-    } catch (error) {
-        console.log("Error: ", error)
-        res.status(500).json({ message: "There was an error while treating the request" })
+
+mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log("I'm connected to the database")
     }
-}
+})
 
-const login = async (req, res) => {
-    const tokenExpire = "4h"
-    try {
-        // const user = req.user
-        const username = req.body.username
-        const password = req.body.password
-        const validUser = await userModel.findOne({ username: username })
+const app = express()
+app.use(cors())
+app.use(express.json())
+app.use(debug)
 
-        console.log("validUser", validUser)
-        const result = bcryptjs.compareSync(password, validUser.password)
 
-        if (result) {
-            console.log("true")
-        }
+app.use("/", router)
+app.use("/user", authRoutes)
+app.use("/users", usersRoutes)
 
-        if (result) {
-            console.log("je suis la dans le result")
-            const token = jwt.sign(
-                {
-                    id: result._id
-                }, "secret",
 
-                {
-                    expiresIn: tokenExpire
-                })
 
-            console.log("token , tokenExpire", token, tokenExpire)
-            res.status(200).json({
-                message: "je suis connecté !", validUser,
-                token,
-                tokenExpire
-            })
-
-        } else {
-            res.status(401).json({ message: "Login failed" })
-        }
-    } catch (error) {
-        console.log("Error: ", error)
-        res.status(500).json({ message: "There was an error while treating the request" })
-    }
-}
-
-module.exports = { signup, login }
+app.listen(port, () => {
+    console.log("Server is listening at port ", port);
+})
