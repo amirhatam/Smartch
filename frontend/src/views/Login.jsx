@@ -49,7 +49,7 @@ const Login = (props) => {
 
         // history.push("/")
 
-        // return window.location.href = parcoursUrl
+        // return window.location.href = 
         return window.location.href = "http://localhost:3000"
 
       }
@@ -61,7 +61,7 @@ const Login = (props) => {
 
   return (
     <MDBFormInline className="bgc-light">
-      <MDBContainer className="mb-5">
+      <MDBContainer className="mb-5" >
         <MDBRow className="px-5">
           <MDBCol className="row my-5 px-5">
             <MDBCard className="offset-3 col-6">

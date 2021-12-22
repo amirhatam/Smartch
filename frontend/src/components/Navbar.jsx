@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
+  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse,
   MDBContainer, MDBBtn, MDBIcon
 } from "mdbreact";
 
@@ -32,20 +32,10 @@ class NavbarPage extends Component {
               <MDBNavItem>
                 <MDBNavLink to="/favorites">Favorites</MDBNavLink>
               </MDBNavItem>
-              <MDBNavItem>
-                <MDBFormInline waves>
-                  <div className="md-form my-0">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                  </div>
-                </MDBFormInline>
-              </MDBNavItem>
-
             </MDBNavbarNav>
             <MDBNavbarNav right>
               <MDBNavItem>
-                {/* <MDBNavLink to="/connexion">Conection</MDBNavLink> */}
                 <MDBBtn color="" className='rounded-pill btn btn-info btn-sm px-3'>
-                  {/* <MDBIcon icon='user' className=' mr-2' />  */}
                   {this.props.userConnected
                     ?
                     <MDBNavLink className='loco-con text-white' to="/" onClick={this.props.logout}><MDBIcon icon="power-off" className="pr-2" />  Disconnect</MDBNavLink>

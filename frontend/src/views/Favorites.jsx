@@ -72,7 +72,7 @@ export default class Favorites extends Component {
 
         if (!this.state.favIDs) {
             return this.setState({
-                message: "Try to Select Movie ...",
+                message: "Try to Select Movie on page Papular Battle ...",
             });
         } else {
             this.state.favIDs.map((item) => {
@@ -85,7 +85,7 @@ export default class Favorites extends Component {
         const { indexFirstMovieOfCurrentBattle } = this.state;
 
         if (!localStorage.token) {
-            return <h3 className="mt-5 font-weight-light text-center">You must login to access the Favorites page !</h3>
+            return <h3 className="mt-5 font-weight-light text-center" >You must login to access the Favorites page !</h3>
         } else {
             return (
                 <div>
@@ -94,7 +94,7 @@ export default class Favorites extends Component {
                     <h3 className="mt-5 font-weight-light text-center">
                         {this.state.message}
                     </h3>
-                    <MDBContainer>
+                    <MDBContainer >
                         <MDBRow className="justify-content-center">
                             {this.state.movies.map((elem, index) => {
                                 return (

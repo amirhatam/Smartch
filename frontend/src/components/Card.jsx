@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBCardGroup } from 'mdbreact';
-import axios from 'axios'
+import React from 'react';
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBCardGroup } from 'mdbreact';
 
 
 const Card = (props) => {
+
+
 
     const image = props.poster_path ?
         `https://image.tmdb.org/t/p/w300/${props.poster_path}` :
@@ -31,16 +32,7 @@ const Card = (props) => {
                             </MDBCardText>
                         </div>
                         <h5>Release date : {props.release_date}</h5>
-                        {/* <MDBBtn size="md"
-                            color="blue"
-                            href="#"
-                            title={props.title}
-                            className='rounded-pill btn btn-info my-3'
-                            // onClick={props.setFavorites}
-                            onClick={props.onClick}
-                        // onClick={() => setFavorites(props.value)}
 
-                        >Like</MDBBtn> */}
                     </MDBCardBody>
                 </MDBCard>
             </MDBCardGroup>

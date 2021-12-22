@@ -3,13 +3,10 @@ import React, { Component } from "react";
 
 export default class BattleCard extends Component {
   state = {
-    // image: `https://image.tmdb.org/t/p/w300/${this.props.poster_path}`,
     title: "",
     release: "",
     overview: "",
   };
-
-
 
   render() {
 

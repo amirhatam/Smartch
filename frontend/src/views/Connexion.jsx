@@ -9,7 +9,7 @@ const ConnexionPage = () => {
   }, [])
 
   return (
-    <MDBView className="bgc-light text-center">
+    <MDBView className="bgc-light text-center" >
       <MDBContainer className="mb-5" >
         <h2 className="h1-responsive fontW my-5">
         </h2>
