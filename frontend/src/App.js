@@ -1,11 +1,24 @@
+import React, { useEffect, useState } from 'react'
+import {
+  BrowserRouter, Route, Switch,
+} from "react-router-dom";
+import "./assets/styles.css"
 
 
-function App() {
+import NavbarPage from './components/Navbar';
+import Home from './views/Home';
+
+
+export default function App() {
+
   return (
-    <div className="App">
-      TEST
-    </div>
-  );
-}
+    <BrowserRouter>
+      <NavbarPage />
 
-export default App;
+      <Switch>
+        <Route path="/" exact component={Home} />
+
+      </Switch>
+    </BrowserRouter>
+  )
+}
