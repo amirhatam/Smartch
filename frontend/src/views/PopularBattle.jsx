@@ -9,7 +9,7 @@ class PopularBattle extends Component {
     indexFirstMovieOfCurrentBattle: 0,
   };
 
-  componentDidMount() {
+  componentDidMount(movieId) {
     const apiKey = "aa9f6ed99dc2087a9ba01eeb0cf2b20e"
 
     const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`;
@@ -21,13 +21,18 @@ class PopularBattle extends Component {
           movies: data.results,
         });
       });
+    // const idsFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    axios.post(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+    if (localStorage.userId) {
 
+      axios.post(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+    } else {
+      console.error();
+    }
   }
 
   updateIndexMovieBattle = (movieId) => {
@@ -47,6 +52,8 @@ class PopularBattle extends Component {
 
   renderTwoMovies() {
     const { indexFirstMovieOfCurrentBattle } = this.state;
+    // console.log("localStorage.favorites", JSON.parse(localStorage.favorites));
+
     return (
       <>
         <div
@@ -98,11 +105,11 @@ class PopularBattle extends Component {
 
   render() {
     if (!localStorage.token) {
-      return <h3 className="mt-5 font-weight-light text-center" style={{ height: `${window.innerHeight}px` }}>You must login to access the PopularBattle page !</h3>
+      return <h3 className="mt-5 font-weight-light text-center" >You must login to access the PopularBattle page !</h3>
     } else {
       return (
         <div className="container text-center">
-          <h1 className="text-center mt-4 font-weight-light">Choose One</h1>
+          <h1 className="text-center mt-5 font-weight-light">Choose One</h1>
           <div className="row justify-content-center ">
             {this.state.indexFirstMovieOfCurrentBattle > 19 ? (
               "Vous avez parcouru tous les films "

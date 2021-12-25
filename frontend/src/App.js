@@ -11,7 +11,7 @@ import Favorites from './views/Favorites';
 import ConnexionPage from './views/Connexion';
 import Signup from './views/Signup';
 import Login from './views/Login';
-import PopularBattle from './components/PopularBattle';
+import PopularBattle from './views/PopularBattle';
 
 export default function App() {
   const [favorites, setFavorites] = useState([])

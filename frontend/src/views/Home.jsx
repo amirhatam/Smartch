@@ -19,6 +19,8 @@ const settings = {
 export default function Home() {
     const [movies, setMovies] = useState("")
     const [movieName, setMovieName] = useState("");
+    const [aveVote, setAveVote] = useState("Average vote:");
+    const [numVotes, setNumVotes] = useState("Number of votes:");
 
 
     const userFavorites = async (e) => {
@@ -87,6 +89,8 @@ export default function Home() {
                                     poster_path={elem.poster_path}
                                     vote_average={elem.vote_average}
                                     vote_count={elem.vote_count}
+                                    aveVote={aveVote}
+                                    numVotes={numVotes}
                                 />;
                             })}
                         </div>
@@ -118,8 +122,6 @@ export default function Home() {
                                 overview={elem.overview}
                                 release_date={elem.release_date}
                                 onClick={userFavorites}
-                                vote_average={elem.vote_average}
-                                vote_count={elem.vote_count}
                             //  {...elem} 
                             />
                         })

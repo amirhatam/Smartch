@@ -8,31 +8,14 @@ import axios from 'axios'
 export default class Favorites extends Component {
     state = {
         movies: [],
-        favIDs: this.getStorage(),
+        // favIDs: this.getStorage(),
+        favIDs: [],
         message: "",
         indexFirstMovieOfCurrentBattle: 0,
     };
 
 
-    getStorage() {
-        axios.get(`http://localhost:8000/users/${localStorage.userId}`)
-            .then(res => {
 
-                const favIDs = res.data.user.favorites
-
-                favIDs.map(arr => {
-                    favIDs.push(parseInt(arr))
-                    favIDs.shift(arr);
-                });
-                console.log("favIDs", favIDs);
-                this.setState({
-                    favIDs,
-                });
-            })
-        const favorites = JSON.parse(localStorage.getItem("favorites"));
-        return favorites;
-
-    }
 
     onClick = () => {
         this.setState({
@@ -69,19 +52,37 @@ export default class Favorites extends Component {
     }
 
     componentDidMount() {
+        // this.getStorage()
 
-        if (!this.state.favIDs) {
-            return this.setState({
-                message: "Try to Select Movie on page Papular Battle ...",
-            });
+        if (localStorage.userId) {
+            axios.get(`http://localhost:8000/users/${localStorage.userId}`)
+                .then(res => {
+
+                    const favorites = res.data.user.favorites
+
+
+                    console.log("favorites", favorites);
+
+                    favorites.map((item) => {
+                        return this.getMovie(item);
+                    });
+
+                    this.setState({
+                        favIDs: favorites
+                    });
+                })
         } else {
-            this.state.favIDs.map((item) => {
-                return this.getMovie(item);
-            });
+            console.error();
         }
-    }
 
+
+
+
+    }
     render() {
+        // console.log("localStorage.favorites", JSON.parse(localStorage.favorites));
+        console.log("favIDs", this.state.favIDs);
+
         const { indexFirstMovieOfCurrentBattle } = this.state;
 
         if (!localStorage.token) {
@@ -89,7 +90,7 @@ export default class Favorites extends Component {
         } else {
             return (
                 <div>
-                    <h1 className="text-center mt-4 font-weight-light"><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
+                    <h1 className="text-center mt-5 font-weight-light"><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
 
                     <h3 className="mt-5 font-weight-light text-center">
                         {this.state.message}

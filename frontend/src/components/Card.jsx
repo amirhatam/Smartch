@@ -24,14 +24,14 @@ const Card = (props) => {
                         className='px-5 pt-5'
                     />
                     <p className='text-center mt-4'>
-                        Average vote: <strong className='text-info h5 mr-3'>{props.vote_average}</strong>
-                        Number of votes: <strong className='text-info h5 '>{props.vote_count}</strong>
+                        {props.aveVote} <strong className='text-info h5 mr-3'>{props.vote_average}</strong>
+                        {props.numVotes} <strong className='text-info h5 '>{props.vote_count}</strong>
                     </p>
                     <MDBCardBody className='text-center '>
                         <MDBCardTitle className='h5'>
                             {props.title}</MDBCardTitle>
                         <hr />
-                        <h5>Release date : <strong className='text-info'> {props.release_date}</strong></h5>
+                        <h6>Release date : <strong className='text-info'> {props.release_date}</strong></h6>
                         <div className='my-4'
                             style={{ height: '200px' }}>
                             <MDBCardText className='text-justify'>
