@@ -20,3 +20,10 @@ img{
 
     border-radius: 5%;
 }
+
+.height400{
+    height: 400px;
+}
+.height300{
+    height: 300px;
+}

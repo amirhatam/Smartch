@@ -105,7 +105,7 @@ class PopularBattle extends Component {
 
   render() {
     if (!localStorage.token) {
-      return <h3 className="mt-5 font-weight-light text-center" >You must login to access the PopularBattle page !</h3>
+      return <h3 className="mt-5 font-weight-light text-center height400" >You must login to access the PopularBattle page !</h3>
     } else {
       return (
         <div className="container text-center">

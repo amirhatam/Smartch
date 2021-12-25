@@ -12,6 +12,7 @@ import ConnexionPage from './views/Connexion';
 import Signup from './views/Signup';
 import Login from './views/Login';
 import PopularBattle from './views/PopularBattle';
+import Footer from './components/Footer';
 
 export default function App() {
   const [favorites, setFavorites] = useState([])
@@ -49,6 +50,8 @@ export default function App() {
           <Login connectUser={() => setUserConnected(true)} />
         </Route>
       </Switch>
+
+      <Footer />
     </BrowserRouter>
   )
 }

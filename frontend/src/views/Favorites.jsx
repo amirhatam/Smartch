@@ -88,16 +88,16 @@ export default class Favorites extends Component {
 
 
         if (!localStorage.token) {
-            return <h3 className="mt-5 font-weight-light text-center" >You must login to access the Favorites page !</h3>
+            return <h3 className="mt-5 font-weight-light text-center height400" >You must login to access the Favorites page !</h3>
         } else if (this.state.favIDs.length === 0) {
             return (
                 <>
-                    <h1 className="text-center mt-5 font-weight-light">
+                    <h1 className="text-center mt-5 font-weight-light" >
                         <strong className="text-uppercase"> {localStorage.username}</strong>
                         's favorite movie
                     </h1>
 
-                    <h3 className="mt-5 font-weight-light text-center">
+                    <h3 className="mt-5 font-weight-light text-center height300" >
                         Try to Select Movie on page Papular Battle ...
                     </h3>
                 </>
@@ -105,7 +105,7 @@ export default class Favorites extends Component {
         } else {
             return (
                 <div>
-                    <h1 className="text-center mt-5 font-weight-light"><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
+                    <h1 className="text-center mt-5 font-weight-light height300" ><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
 
                     <MDBContainer >
                         <MDBRow className="justify-content-center">
