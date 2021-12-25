@@ -15,6 +15,29 @@ export default class Favorites extends Component {
     };
 
 
+    // getStorage() {
+    //     if (localStorage.userId) {
+    //         axios.get(`http://localhost:8000/users/${localStorage.userId}`)
+    //             .then(res => {
+
+    //                 const favorites = res.data.user.favorites
+
+    //                 favorites.map(arr => {
+    //                     favorites.push(parseInt(arr))
+    //                     favorites.shift(arr);
+    //                 });
+    //                 this.setState({
+    //                     favIDs: favorites
+    //                 });
+    //             })
+    //     } else {
+    //         console.error();
+    //     }
+    //     const favorites = JSON.parse(localStorage.getItem("favorites"));
+    //     return favorites;
+
+    // }
+
     onClick = () => {
         this.setState({
             movies: [],
@@ -51,19 +74,20 @@ export default class Favorites extends Component {
 
     componentDidMount() {
 
+
         if (localStorage.userId) {
             axios.get(`http://localhost:8000/users/${localStorage.userId}`)
                 .then(res => {
 
                     const favorites = res.data.user.favorites
 
+                    // console.log("favorites", favorites);
                     for (let i = 0; i <= favorites.length; i++) {
 
                         favorites.push(parseInt(favorites))
                         favorites.shift()
                     }
 
-                    console.log("favorites", favorites);
 
                     favorites.map((item) => {
                         return this.getMovie(item);
@@ -74,30 +98,32 @@ export default class Favorites extends Component {
                     });
 
                 })
+        } else {
+            console.error();
         }
+        //  if (!this.state.favIDs) {
+        //     return this.setState({
+        //         message: "Try to Select Movie on page Papular Battle ...",
+        //     });
+        // }
+
     }
     render() {
-        // console.log("localStorage.favorites", JSON.parse(localStorage.favorites));
+        // console.log("localStorage.favorites", localStorage.favorites);
         // console.log("favIDs", this.state.favIDs);
         // console.log("message", this.state.message);
 
 
         if (!localStorage.token) {
             return <h3 className="mt-5 font-weight-light text-center" >You must login to access the Favorites page !</h3>
-        } else if (this.state.favIDs.length === 0) {
-            return (
-                <>
-                    <h1 className="text-center mt-5 font-weight-light"><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
-                    <h3 className="mt-5 font-weight-light text-center">
-                        Try to Select Movie on page Papular Battle ...
-                    </h3>
-                </>
-            )
         } else {
             return (
                 <div>
                     <h1 className="text-center mt-5 font-weight-light"><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
 
+                    <h3 className="mt-5 font-weight-light text-center">
+                        {this.state.message}
+                    </h3>
                     <MDBContainer >
                         <MDBRow className="justify-content-center">
                             {this.state.movies.map((elem, index) => {

@@ -33,6 +33,7 @@ export default function App() {
     setUserConnected(false)
   }
 
+  console.log("localStorage.favorites:", localStorage.favorites);
   return (
     <BrowserRouter>
       <NavbarPage logout={logout} userConnected={userConnected} />

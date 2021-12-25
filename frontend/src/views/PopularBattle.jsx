@@ -23,7 +23,7 @@ class PopularBattle extends Component {
       });
     // const idsFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    if (localStorage.userId) {
+    if (localStorage.userId && localStorage.favorites) {
 
       axios.post(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
         .then(res => {

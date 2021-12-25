@@ -15,7 +15,7 @@ class NavbarPage extends Component {
 
   render(props) {
     return (
-      <MDBNavbar color="indigo" dark expand="md">
+      <MDBNavbar color="unique-color" dark expand="md">
         <MDBContainer>
           <MDBNavbarBrand>
             <strong className="white-text"><MDBIcon icon="film" /> Movies</strong>
@@ -35,7 +35,7 @@ class NavbarPage extends Component {
             </MDBNavbarNav>
             <MDBNavbarNav right>
               <MDBNavItem>
-                <MDBBtn color="" className='rounded-pill btn btn-info btn-sm px-3'>
+                <MDBBtn color="info" size="sm" className='rounded-pill px-3'>
                   {this.props.userConnected
                     ?
                     <MDBNavLink className='loco-con text-white' to="/" onClick={this.props.logout}><MDBIcon icon="power-off" className="pr-2" />  Disconnect</MDBNavLink>

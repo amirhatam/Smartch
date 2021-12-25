@@ -20,7 +20,7 @@ const Login = (props) => {
 
   const validLogin = async () => {
     try {
-      localStorage.clear();
+      // localStorage.clear();
       console.log("je suis validLogin")
       console.log("username", username)
       console.log("password", password)
