@@ -15,8 +15,6 @@ export default class Favorites extends Component {
     };
 
 
-
-
     onClick = () => {
         this.setState({
             movies: [],
@@ -52,7 +50,6 @@ export default class Favorites extends Component {
     }
 
     componentDidMount() {
-        // this.getStorage()
 
         if (localStorage.userId) {
             axios.get(`http://localhost:8000/users/${localStorage.userId}`)
@@ -60,6 +57,11 @@ export default class Favorites extends Component {
 
                     const favorites = res.data.user.favorites
 
+                    for (let i = 0; i <= favorites.length; i++) {
+
+                        favorites.push(parseInt(favorites))
+                        favorites.shift()
+                    }
 
                     console.log("favorites", favorites);
 
@@ -70,31 +72,32 @@ export default class Favorites extends Component {
                     this.setState({
                         favIDs: favorites
                     });
+
                 })
-        } else {
-            console.error();
         }
-
-
-
-
     }
     render() {
         // console.log("localStorage.favorites", JSON.parse(localStorage.favorites));
-        console.log("favIDs", this.state.favIDs);
+        // console.log("favIDs", this.state.favIDs);
+        // console.log("message", this.state.message);
 
-        const { indexFirstMovieOfCurrentBattle } = this.state;
 
         if (!localStorage.token) {
             return <h3 className="mt-5 font-weight-light text-center" >You must login to access the Favorites page !</h3>
+        } else if (this.state.favIDs.length === 0) {
+            return (
+                <>
+                    <h1 className="text-center mt-5 font-weight-light"><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
+                    <h3 className="mt-5 font-weight-light text-center">
+                        Try to Select Movie on page Papular Battle ...
+                    </h3>
+                </>
+            )
         } else {
             return (
                 <div>
                     <h1 className="text-center mt-5 font-weight-light"><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
 
-                    <h3 className="mt-5 font-weight-light text-center">
-                        {this.state.message}
-                    </h3>
                     <MDBContainer >
                         <MDBRow className="justify-content-center">
                             {this.state.movies.map((elem, index) => {

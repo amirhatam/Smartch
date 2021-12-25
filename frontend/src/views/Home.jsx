@@ -70,7 +70,7 @@ export default function Home() {
         }
     }
 
-    console.log("movies", movies);
+    // console.log("movies", movies);
     // console.log("localStorage", localStorage);
 
     if (!movies) {
@@ -78,7 +78,7 @@ export default function Home() {
     } else {
         return (
             <MDBView >
-                <MDBContainer className='mt-5'>
+                <MDBContainer className='my-5'>
 
                     <h1 className="mt-5 font-weight-light text-center" ><MDBIcon icon="film" /> Movies In Theaters</h1>
                     <Slider style={{ overflow: "hidden", maxHeight: "630px" }} {...settings}>
