@@ -21,7 +21,7 @@ const ConnexionPage = () => {
                 alt=""
                 className="img-fluid col-auto"
               />
-              <a href="#!">
+              <a href="true">
                 <MDBMask overlay="white-slight" />
               </a>
             </MDBView>
@@ -39,7 +39,7 @@ const ConnexionPage = () => {
                 alt=""
                 className="img-fluid col-auto"
               />
-              <a href="#!">
+              <a href="true">
                 <MDBMask overlay="white-slight" />
               </a>
             </MDBView>

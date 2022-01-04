@@ -6,6 +6,7 @@ import Slider from "react-slick";
 
 
 
+
 const settings = {
     infinite: true,
     slidesToShow: 1,
@@ -22,16 +23,63 @@ export default function Home() {
     const [aveVote, setAveVote] = useState("Average vote:");
     const [numVotes, setNumVotes] = useState("Number of votes:");
 
+    // const [userList, setUserList] = useState([]);
+    // const [movieId, setMovieId] = useState([]);
 
-    const userFavorites = async (e) => {
-        const favorites = [e.target.title]
 
-        if (!favorites.includes(e.target.title)) {
-            favorites.push(e.target.title);
+
+
+
+    const moviesFav = async (e) => {
+
+        const idsFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        console.log("idsFavorites", idsFavorites);
+        console.log("movie id", e);
+        if (!idsFavorites.includes(e)) {
+            idsFavorites.push(e);
+
+            localStorage.setItem("favorites", JSON.stringify(idsFavorites));
         }
-        console.log("favorites", favorites);
 
-    }
+        if (localStorage.userId && localStorage.favorites) {
+
+            axios.patch(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
+                .then(res => {
+                    console.log(res);
+                    console.log(res.data);
+                })
+        } else {
+            console.error();
+        }
+
+        console.log("localStorage", localStorage.favorites);
+    };
+
+
+
+
+    // const userFavorites = async (e) => {
+    //     const favorites = parseInt(e.target.value)
+
+    //     if (!userList.includes(favorites)) {
+    //         setUserList(prevState => [
+    //             ...prevState, favorites
+    //         ])
+    //     }
+    // }
+
+
+
+    // const updateList = async () => {
+    //     const response = await axios.post(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: userList })
+    //     if (response.status === 200) {
+    //         console.log("response", response);
+    //     }
+
+    // }
+    // console.log("userList", userList);
+
 
 
     useEffect(() => {
@@ -44,12 +92,12 @@ export default function Home() {
                     setMovies(response.data.results.slice(0, 10))
                 }
 
+
             } catch (error) {
                 console.log(error)
             }
         })();
     }, [])
-
 
     const searchMovie = async () => {
         try {
@@ -70,8 +118,7 @@ export default function Home() {
         }
     }
 
-    // console.log("movies", movies);
-    // console.log("localStorage", localStorage);
+
 
     if (!movies) {
         return <h3 className="mt-5 font-weight-light text-center">Loading...</h3>
@@ -115,15 +162,23 @@ export default function Home() {
 
                     <MDBRow className="justify-content-around">
                         {movies.map((elem, index) => {
-                            return <Card
-                                key={index}
-                                poster_path={elem.poster_path}
-                                title={elem.title}
-                                overview={elem.overview}
-                                release_date={elem.release_date}
-                                onClick={userFavorites}
-                            //  {...elem} 
-                            />
+                            return (
+                                <>
+                                    <Card
+                                        key={index}
+                                        poster_path={elem.poster_path}
+                                        title={elem.title}
+                                        overview={elem.overview}
+                                        release_date={elem.release_date}
+                                        movieId={elem.id}
+                                        // userFavorites={userFavorites}
+                                        moviesFav={moviesFav}
+                                    //  {...elem} 
+                                    />
+
+
+                                </>
+                            )
                         })
                         }
 

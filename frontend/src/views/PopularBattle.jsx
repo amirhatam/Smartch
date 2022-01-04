@@ -21,18 +21,7 @@ class PopularBattle extends Component {
           movies: data.results,
         });
       });
-    // const idsFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    if (localStorage.userId && localStorage.favorites) {
-
-      axios.post(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
-    } else {
-      console.error();
-    }
   }
 
   updateIndexMovieBattle = (movieId) => {
@@ -42,6 +31,17 @@ class PopularBattle extends Component {
       idsFavorites.push(movieId);
 
       localStorage.setItem("favorites", JSON.stringify(idsFavorites));
+    }
+
+    if (localStorage.userId && localStorage.favorites) {
+
+      axios.patch(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+    } else {
+      console.error();
     }
 
     this.setState({
@@ -104,6 +104,8 @@ class PopularBattle extends Component {
   }
 
   render() {
+    // console.log("localStorage", JSON.parse(localStorage.favorites));
+
     if (!localStorage.token) {
       return <h3 className="mt-5 font-weight-light text-center height400" >You must login to access the PopularBattle page !</h3>
     } else {

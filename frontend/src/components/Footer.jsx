@@ -21,9 +21,9 @@ const Footer = () => {
                                 <p className="h6-fs m-0 mb-3">
                                     (TMDB) API
                                 </p>
-                                <p>More information on the link below </p>
                                 <br />
-                                <a className="h6-fs" href="https://developers.themoviedb.org/3/getting-started/introduction" title="asso.azimuto@gmail.com" >Developers.TheMovieDB.org</a>
+                                <p className="mb-1">More information on the link below :</p>
+                                <a className="h6-fs" href="https://developers.themoviedb.org/3/getting-started/introduction" title="developers.themoviedb.org" >Developers.TheMovieDB.org</a>
                             </div>
 
                         </MDBCol>
@@ -31,22 +31,22 @@ const Footer = () => {
                         <MDBCol md="6">
                             <ul className="pl-0">
                                 <li className="list-unstyled  my-1">
-                                    <a className="" href>
+                                    <a className="" href="true">
                                         <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/">Home</MDBNavLink>
                                     </a>
                                 </li>
                                 <li className="list-unstyled my-1">
-                                    <a className="" href>
+                                    <a className="" href="true">
                                         <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/popularBattle">PopularBattle</MDBNavLink>
                                     </a>
                                 </li>
                                 <li className="list-unstyled my-1">
-                                    <a className="" href>
+                                    <a className="" href="true">
                                         <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/favorites">Favorites</MDBNavLink>
                                     </a>
                                 </li>
                                 <li className="list-unstyled my-1">
-                                    <a className="" href>
+                                    <a className="" href="true">
                                         <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/connexion">Connexion</MDBNavLink>
                                     </a>
                                 </li>

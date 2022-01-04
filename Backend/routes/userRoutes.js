@@ -15,7 +15,7 @@ router.get("/:id", getUserById) //Pour recuperer le User par ID
 
 router.get("/username/:username", getUser) //Pour recuperer le User par Name
 
-router.post("/:id/favorites", updateFavorites) //Pour update le User par ID
+router.patch("/:id/favorites", updateFavorites) //Pour update le User par ID
 
 
 

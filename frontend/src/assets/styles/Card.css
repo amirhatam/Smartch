@@ -1,0 +1,6 @@
+.likeBox{
+    position: absolute;
+    left: 12vmax;
+    top: 24px;
+    z-index: 1;
+}

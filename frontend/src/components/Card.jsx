@@ -1,9 +1,9 @@
 import React from 'react';
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBCardGroup } from 'mdbreact';
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBCardGroup, MDBBtn } from 'mdbreact';
+import "../assets/styles/Card.css"
 
 
 const Card = (props) => {
-
 
 
     const image = props.poster_path ?
@@ -14,6 +14,7 @@ const Card = (props) => {
         <MDBCol lg="5" className=' my-4'>
             <MDBCardGroup>
                 <MDBCard>
+
                     <MDBCardImage
                         top
                         src={image}
@@ -33,16 +34,24 @@ const Card = (props) => {
                         <hr />
                         <h6>Release date : <strong className='text-info'> {props.release_date}</strong></h6>
                         <div className='my-4'
-                            style={{ height: '200px' }}>
+                            style={{ height: '250px' }}>
                             <MDBCardText className='text-justify'>
                                 {props.overview}
                             </MDBCardText>
                         </div>
+                        <MDBBtn color="info" size="md" className=' rounded-pill px-3'
+                            // onClick={props.userFavorites}
+                            // onClick={function (e) { props.userFavorites(e); props.updateList(e) }}
+                            onClick={(e) => props.moviesFav(props.movieId)}
 
+                            value={props.movieId}
+                        >
+                            Add to Favorites
+                        </MDBBtn>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCardGroup>
-        </MDBCol>
+        </MDBCol >
     )
 }
 

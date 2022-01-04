@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { MDBContainer, MDBRow } from 'mdbreact';
 
-import Card from "../components/Card";
+import FavoritesCard from "../components/FavoritesCard";
 import axios from 'axios'
+// import DeleteButtons from "../components/DeleteButtons";
 
 
 export default class Favorites extends Component {
@@ -12,7 +13,6 @@ export default class Favorites extends Component {
         favIDs: [],
         indexFirstMovieOfCurrentBattle: 0,
     };
-
 
 
     onClick = () => {
@@ -50,7 +50,6 @@ export default class Favorites extends Component {
     }
 
     componentDidMount() {
-
 
         if (localStorage.userId) {
             axios.get(`http://localhost:8000/users/${localStorage.userId}`)
@@ -106,18 +105,23 @@ export default class Favorites extends Component {
             return (
                 <div>
                     <h1 className="text-center mt-5 font-weight-light height300" ><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
-
                     <MDBContainer >
                         <MDBRow className="justify-content-center">
                             {this.state.movies.map((elem, index) => {
                                 return (
-                                    <Card
-                                        key={index}
-                                        poster_path={elem.poster_path}
-                                        title={elem.title}
-                                        release_date={elem.release_date}
-                                        overview={elem.overview}
-                                    />
+                                    <>
+                                        <FavoritesCard
+                                            key={index}
+                                            poster_path={elem.poster_path}
+                                            title={elem.title}
+                                            release_date={elem.release_date}
+                                            overview={elem.overview}
+                                            movieId={elem.id}
+                                            movies={this.state.movies}
+
+                                        />
+                                    </>
+
                                 );
                             })}
                         </MDBRow>
