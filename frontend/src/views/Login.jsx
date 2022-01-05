@@ -48,6 +48,15 @@ const Login = (props) => {
 
         // history.push("/")
 
+        axios.get(`http://localhost:8000/users/${userId}`)
+          .then(res => {
+
+            const favorites = res.data.user.favorites
+
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+
+          })
+
         // return window.location.href = 
         return window.location.href = "http://localhost:3000"
 
@@ -57,6 +66,8 @@ const Login = (props) => {
       console.error("error :", error)
     }
   }
+
+
 
   return (
     <MDBFormInline className="bgc-light">

@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { MDBRow, MDBContainer, MDBView, MDBIcon, MDBBtn } from 'mdbreact';
 import axios from 'axios'
-import Card from '../components/Card';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import Card from '../components/Cards/Card';
 import Slider from "react-slick";
+import Carousel from '../components/Carousel';
+
 
 
 
 
 const settings = {
+    dots: false,
     infinite: true,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 10000,
+    speed: 2000,
     autoplaySpeed: 1000,
     pauseOnHover: true,
     cssEase: "linear",
@@ -23,23 +29,22 @@ export default function Home() {
     const [aveVote, setAveVote] = useState("Average vote:");
     const [numVotes, setNumVotes] = useState("Number of votes:");
 
-    // const [userList, setUserList] = useState([]);
-    // const [movieId, setMovieId] = useState([]);
-
-
-
 
 
     const moviesFav = async (e) => {
+        if (localStorage.userId) {
+            const idsFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-        const idsFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            console.log("idsFavorites", idsFavorites);
+            console.log("movie id", e);
+            if (!idsFavorites.includes(e)) {
+                idsFavorites.push(e);
 
-        console.log("idsFavorites", idsFavorites);
-        console.log("movie id", e);
-        if (!idsFavorites.includes(e)) {
-            idsFavorites.push(e);
+                localStorage.setItem("favorites", JSON.stringify(idsFavorites));
+            }
+        } else {
 
-            localStorage.setItem("favorites", JSON.stringify(idsFavorites));
+            return window.location.href = "http://localhost:3000/connexion/login"
         }
 
         if (localStorage.userId && localStorage.favorites) {
@@ -53,45 +58,20 @@ export default function Home() {
             console.error();
         }
 
-        console.log("localStorage", localStorage.favorites);
     };
-
-
-
-
-    // const userFavorites = async (e) => {
-    //     const favorites = parseInt(e.target.value)
-
-    //     if (!userList.includes(favorites)) {
-    //         setUserList(prevState => [
-    //             ...prevState, favorites
-    //         ])
-    //     }
-    // }
-
-
-
-    // const updateList = async () => {
-    //     const response = await axios.post(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: userList })
-    //     if (response.status === 200) {
-    //         console.log("response", response);
-    //     }
-
-    // }
-    // console.log("userList", userList);
 
 
 
     useEffect(() => {
         (async () => {
             try {
-                const apiKey = "aa9f6ed99dc2087a9ba01eeb0cf2b20e"
+                const apiKey = "e441f8a3a151d588a4932d2c5d310769";
                 const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`)
                 if (response.status === 200) {
 
-                    setMovies(response.data.results.slice(0, 10))
+                    // setMovies(response.data.results.slice(0, 10))
+                    setMovies(response.data.results)
                 }
-
 
             } catch (error) {
                 console.log(error)
@@ -99,9 +79,13 @@ export default function Home() {
         })();
     }, [])
 
+    // console.log("localStorage", localStorage);
+
+    //
     const searchMovie = async () => {
         try {
-            const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=aa9f6ed99dc2087a9ba01eeb0cf2b20e&query=${movieName}`)
+            const apiKey = "e441f8a3a151d588a4932d2c5d310769";
+            const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieName}`)
             if (response.status === 200) {
 
                 setMovies(response.data.results.slice(0, 10))
@@ -110,8 +94,6 @@ export default function Home() {
             if (!response) {
                 console.error("response err:", response);
             }
-
-
 
         } catch (err) {
             console.error(err);
@@ -126,23 +108,22 @@ export default function Home() {
         return (
             <MDBView >
                 <MDBContainer className='my-5'>
-
                     <h1 className="mt-5 font-weight-light text-center" ><MDBIcon icon="film" /> Movies In Theaters</h1>
-                    <Slider style={{ overflow: "hidden", maxHeight: "630px" }} {...settings}>
-                        <div className=" d-flex">
-                            {movies.map((elem, index) => {
-                                return <Card key={index}
-                                    release_date={elem.release_date}
-                                    poster_path={elem.poster_path}
-                                    vote_average={elem.vote_average}
-                                    vote_count={elem.vote_count}
-                                    aveVote={aveVote}
-                                    numVotes={numVotes}
-                                />;
-                            })}
+
+                    <Slider {...settings}>
+                        {movies.map((elem) => {
+                            return <Carousel
+                                poster_path={elem.poster_path}
+                                vote_average={elem.vote_average}
+                                vote_count={elem.vote_count}
+                                aveVote={aveVote}
+                                numVotes={numVotes}
+                            />
+                        })}
+                        <div>
                         </div>
-                        <div></div>
-                        <div></div>
+                        <div>
+                        </div>
                     </Slider>
 
                     <MDBRow className="justify-content-center my-5">
@@ -171,7 +152,10 @@ export default function Home() {
                                         overview={elem.overview}
                                         release_date={elem.release_date}
                                         movieId={elem.id}
-                                        // userFavorites={userFavorites}
+                                        vote_average={elem.vote_average}
+                                        vote_count={elem.vote_count}
+                                        aveVote={aveVote}
+                                        numVotes={numVotes}
                                         moviesFav={moviesFav}
                                     //  {...elem} 
                                     />

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios'
 
-import BattleCard from "../components/BattleCard";
+import BattleCard from "../components/Cards/BattleCard";
 
 class PopularBattle extends Component {
   state = {

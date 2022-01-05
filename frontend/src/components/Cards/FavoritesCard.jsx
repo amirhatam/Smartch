@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBCardImage, MDBCol, MDBCardGroup } from 'mdbreact';
-import DeleteButtons from "../components/DeleteButtons";
+import DeleteButtons from "../DeleteButtons";
 
 
 const FavoritesCard = (props) => {

@@ -6,7 +6,7 @@ import "./assets/styles.css"
 
 
 import NavbarPage from './components/Navbar';
-import Home from './views/Home';
+import Theaters from './views/Theaters';
 import Favorites from './views/Favorites';
 import ConnexionPage from './views/Connexion';
 import Signup from './views/Signup';
@@ -40,7 +40,7 @@ export default function App() {
       <NavbarPage logout={logout} userConnected={userConnected} />
 
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={Theaters} />
         <Route path="/favorites" exact component={Favorites} />
         <Route path="/popularBattle" exact component={PopularBattle} fav={favorites} />
         <Route path="/connexion" exact component={ConnexionPage} />

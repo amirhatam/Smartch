@@ -32,7 +32,7 @@ const Footer = () => {
                             <ul className="pl-0">
                                 <li className="list-unstyled  my-1">
                                     <a className="" href="true">
-                                        <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/">Home</MDBNavLink>
+                                        <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/">Theaters</MDBNavLink>
                                     </a>
                                 </li>
                                 <li className="list-unstyled my-1">

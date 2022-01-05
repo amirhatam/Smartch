@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { MDBContainer, MDBRow } from 'mdbreact';
 
-import FavoritesCard from "../components/FavoritesCard";
+import FavoritesCard from "../components/Cards/FavoritesCard";
 import axios from 'axios'
 // import DeleteButtons from "../components/DeleteButtons";
 
@@ -12,14 +12,6 @@ export default class Favorites extends Component {
         // favIDs: this.getStorage(),
         favIDs: [],
         indexFirstMovieOfCurrentBattle: 0,
-    };
-
-
-    onClick = () => {
-        this.setState({
-            movies: [],
-        });
-        return localStorage.clear();
     };
 
     updateIndexMovieBattle = (movieId) => {
