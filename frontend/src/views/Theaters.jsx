@@ -8,6 +8,7 @@ import Card from '../components/Cards/Card';
 import Slider from "react-slick";
 import Carousel from '../components/Carousel';
 import { moviesFav } from '../utils/UserFavorites';
+import SpinnerPage from '../components/SpinerPage';
 
 
 
@@ -71,7 +72,7 @@ export default function Home() {
 
 
     if (!movies) {
-        return <h3 className="my-5 font-weight-light text-center">Loading...</h3>
+        return <SpinnerPage />
     } else {
         return (
             <MDBView >

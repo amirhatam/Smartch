@@ -8,6 +8,7 @@ import { moviesFav } from '../utils/UserFavorites';
 
 import Card from '../components/Cards/Card';
 import Carousel from '../components/Carousel';
+import SpinnerPage from '../components/SpinerPage';
 
 
 const moment = require("moment");
@@ -102,7 +103,7 @@ function ComingSoon() {
 
 
     if (!movies) {
-        return <h3 className="mt-5 font-weight-light text-center">Loading...</h3>
+        return <SpinnerPage />
     } else {
         return (
             <MDBView >
