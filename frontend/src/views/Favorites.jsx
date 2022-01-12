@@ -3,7 +3,6 @@ import { MDBContainer, MDBRow } from 'mdbreact';
 
 import FavoritesCard from "../components/Cards/FavoritesCard";
 import axios from 'axios'
-// import DeleteButtons from "../components/DeleteButtons";
 
 
 export default class Favorites extends Component {

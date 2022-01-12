@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Card from '../components/Cards/Card';
 import Slider from "react-slick";
 import Carousel from '../components/Carousel';
+import { moviesFav } from '../utils/UserFavorites';
 
 
 
@@ -30,37 +31,6 @@ export default function Home() {
     const [numVotes, setNumVotes] = useState("Number of votes:");
 
 
-
-    const moviesFav = async (e) => {
-        if (localStorage.userId) {
-            const idsFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-            console.log("idsFavorites", idsFavorites);
-            console.log("movie id", e);
-            if (!idsFavorites.includes(e)) {
-                idsFavorites.push(e);
-
-                localStorage.setItem("favorites", JSON.stringify(idsFavorites));
-            }
-        } else {
-
-            return window.location.href = "http://localhost:3000/connexion/login"
-        }
-
-        if (localStorage.userId && localStorage.favorites) {
-
-            axios.patch(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
-                .then(res => {
-                    console.log(res);
-                    console.log(res.data);
-                })
-        } else {
-            console.error();
-        }
-
-    };
-
-
     useEffect(() => {
         (async () => {
             try {
@@ -78,9 +48,7 @@ export default function Home() {
         })();
     }, [])
 
-    // console.log("localStorage", localStorage);
 
-    //
     const searchMovie = async () => {
         try {
             const apiKey = "e441f8a3a151d588a4932d2c5d310769";
