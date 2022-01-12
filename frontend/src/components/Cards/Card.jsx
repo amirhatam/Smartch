@@ -14,9 +14,6 @@ const Card = (props) => {
 
 
 
-
-
-
     useEffect(() => {
         (async () => {
             try {
@@ -49,6 +46,9 @@ const Card = (props) => {
 
     // console.log("props.genres", props.genres);
     // console.log("props.genre_ids", movieGenres);
+    const review = props.overview ?
+        props.overview :
+        <p className='text-center'>Review Not Found !</p>
 
     const image = props.poster_path ?
         `https://image.tmdb.org/t/p/w300/${props.poster_path}` :
@@ -71,7 +71,7 @@ const Card = (props) => {
                         <MDBCardTitle className='h5'>
                             {props.title}</MDBCardTitle>
                         <CollapsePage
-                            overview={props.overview}
+                            overview={review}
                         />
                         <hr className='mt-0' />
                         <h6>Release date : <strong className='text-info'> {props.release_date}</strong></h6>
