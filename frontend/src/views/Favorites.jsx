@@ -99,11 +99,11 @@ export default class Favorites extends Component {
                     <h1 className="text-center mt-5 font-weight-light height300" ><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
                     <MDBContainer >
                         <MDBRow className="justify-content-center">
-                            {this.state.movies.map((elem, index) => {
+                            {this.state.movies.map((elem) => {
                                 return (
                                     <>
                                         <FavoritesCard
-                                            key={index}
+                                            key={elem.id}
                                             poster_path={elem.poster_path}
                                             title={elem.title}
                                             release_date={elem.release_date}

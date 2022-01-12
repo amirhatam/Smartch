@@ -10,8 +10,6 @@ import Carousel from '../components/Carousel';
 
 
 
-
-
 const settings = {
     dots: false,
     infinite: true,
@@ -25,6 +23,8 @@ const settings = {
 };
 export default function Home() {
     const [movies, setMovies] = useState("")
+    const [pages, setPages] = useState("1")
+    const [searchMovies, setSearchMovies] = useState("")
     const [movieName, setMovieName] = useState("");
     const [aveVote, setAveVote] = useState("Average vote:");
     const [numVotes, setNumVotes] = useState("Number of votes:");
@@ -61,12 +61,11 @@ export default function Home() {
     };
 
 
-
     useEffect(() => {
         (async () => {
             try {
                 const apiKey = "e441f8a3a151d588a4932d2c5d310769";
-                const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`)
+                const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=${pages}`)
                 if (response.status === 200) {
 
                     // setMovies(response.data.results.slice(0, 10))
@@ -88,7 +87,8 @@ export default function Home() {
             const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieName}`)
             if (response.status === 200) {
 
-                setMovies(response.data.results.slice(0, 10))
+                // setMovies(response.data.results.slice(0, 10))
+                setSearchMovies(response.data.results)
             }
 
             if (!response) {
@@ -103,16 +103,17 @@ export default function Home() {
 
 
     if (!movies) {
-        return <h3 className="mt-5 font-weight-light text-center">Loading...</h3>
+        return <h3 className="my-5 font-weight-light text-center">Loading...</h3>
     } else {
         return (
             <MDBView >
                 <MDBContainer className='my-5'>
-                    <h1 className="mt-5 font-weight-light text-center" ><MDBIcon icon="film" /> Movies In Theaters</h1>
+                    <h1 className="my-5 font-weight-light text-center" ><MDBIcon icon="film" /> Movies In Theaters</h1>
 
                     <Slider {...settings}>
                         {movies.map((elem) => {
                             return <Carousel
+                                key={elem.id}
                                 poster_path={elem.poster_path}
                                 vote_average={elem.vote_average}
                                 vote_count={elem.vote_count}
@@ -142,30 +143,50 @@ export default function Home() {
                     </MDBRow>
 
                     <MDBRow className="justify-content-around">
-                        {movies.map((elem, index) => {
-                            return (
-                                <>
-                                    <Card
-                                        key={index}
-                                        poster_path={elem.poster_path}
-                                        title={elem.title}
-                                        overview={elem.overview}
-                                        release_date={elem.release_date}
-                                        movieId={elem.id}
-                                        vote_average={elem.vote_average}
-                                        vote_count={elem.vote_count}
-                                        aveVote={aveVote}
-                                        numVotes={numVotes}
-                                        moviesFav={moviesFav}
-                                    //  {...elem} 
-                                    />
-
-
-                                </>
-                            )
-                        })
+                        {searchMovies
+                            ?
+                            searchMovies.map((elem) => {
+                                return (
+                                    <>
+                                        <Card
+                                            key={elem.id}
+                                            poster_path={elem.poster_path}
+                                            title={elem.title}
+                                            overview={elem.overview}
+                                            release_date={elem.release_date}
+                                            movieId={elem.id}
+                                            vote_average={elem.vote_average}
+                                            vote_count={elem.vote_count}
+                                            aveVote={aveVote}
+                                            numVotes={numVotes}
+                                            moviesFav={moviesFav}
+                                        //  {...elem} 
+                                        />
+                                    </>
+                                )
+                            })
+                            :
+                            movies.map((elem) => {
+                                return (
+                                    <>
+                                        <Card
+                                            key={elem.id}
+                                            poster_path={elem.poster_path}
+                                            title={elem.title}
+                                            overview={elem.overview}
+                                            release_date={elem.release_date}
+                                            movieId={elem.id}
+                                            vote_average={elem.vote_average}
+                                            vote_count={elem.vote_count}
+                                            aveVote={aveVote}
+                                            numVotes={numVotes}
+                                            moviesFav={moviesFav}
+                                        //  {...elem} 
+                                        />
+                                    </>
+                                )
+                            })
                         }
-
                     </MDBRow>
                 </MDBContainer>
             </MDBView>

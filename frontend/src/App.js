@@ -13,6 +13,7 @@ import Signup from './views/Signup';
 import Login from './views/Login';
 import PopularBattle from './views/PopularBattle';
 import Footer from './components/Footer';
+import ComingSoon from './views/ComingSoon';
 
 export default function App() {
   const [favorites, setFavorites] = useState([])
@@ -41,6 +42,7 @@ export default function App() {
 
       <Switch>
         <Route path="/" exact component={Theaters} />
+        <Route path="/coming-soon" exact component={ComingSoon} />
         <Route path="/favorites" exact component={Favorites} />
         <Route path="/popularBattle" exact component={PopularBattle} fav={favorites} />
         <Route path="/connexion" exact component={ConnexionPage} />

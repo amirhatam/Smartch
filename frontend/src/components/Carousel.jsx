@@ -3,7 +3,6 @@ import React from "react";
 
 const Carousel = (props) => {
 
-
     const image = props.poster_path ?
         `https://image.tmdb.org/t/p/w300/${props.poster_path}` :
         "https://www.mupload.nl/img/zymrod6nqov9t.jpg";

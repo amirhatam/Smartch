@@ -23,11 +23,14 @@ class NavbarPage extends Component {
           <MDBNavbarToggler onClick={this.toggleCollapse} />
           <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
             <MDBNavbarNav left>
-              <MDBNavItem active>
+              <MDBNavItem >
                 <MDBNavLink to="/">Theaters</MDBNavLink>
               </MDBNavItem>
+              <MDBNavItem >
+                <MDBNavLink to="/coming-soon">Coming-Soon</MDBNavLink>
+              </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink to="/popularBattle">PopularBattle</MDBNavLink>
+                <MDBNavLink to="/popularBattle">Popular-Battle</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="/favorites">Favorites</MDBNavLink>
