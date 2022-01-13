@@ -3,6 +3,7 @@ import { MDBContainer, MDBRow } from 'mdbreact';
 
 import FavoritesCard from "../components/Cards/FavoritesCard";
 import axios from 'axios'
+import SpinnerPage from "../components/SpinerPage";
 
 
 export default class Favorites extends Component {
@@ -92,12 +93,15 @@ export default class Favorites extends Component {
                     </h3>
                 </>
             )
-        } else {
+        } else if (!this.state.movies) {
+            <SpinnerPage />
+        }
+        else {
             return (
                 <div>
                     <h1 className="text-center mt-5 font-weight-light height300" ><strong className="text-uppercase"> {localStorage.username}</strong>'s favorite movie</h1>
                     <MDBContainer >
-                        <MDBRow className="justify-content-center">
+                        <MDBRow className="justify-content-center mb-5">
                             {this.state.movies.map((elem) => {
                                 return (
                                     <>

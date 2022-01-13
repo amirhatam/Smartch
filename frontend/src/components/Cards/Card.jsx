@@ -18,19 +18,21 @@ const Card = (props) => {
         (async () => {
             try {
                 //First all of the genres movie
-                for (let i = 0; i < movieGenres.length; i++) {
-                    // console.log(movieGenres);
-                    if (movieGenres[i] !== undefined) {
-                        const movieIds = movieGenres[i]
-                        // console.log(movieIds);
-                        //
-                        for (let j = 0; j <= genresIds.length; j++) {
-                            if (genresIds[j] !== undefined && movieIds === genresIds[j].id) {
+                if (movieGenres) {
+                    for (let i = 0; i < movieGenres.length; i++) {
+                        // console.log(movieGenres);
+                        if (movieGenres[i] !== undefined) {
+                            const movieIds = movieGenres[i]
+                            // console.log(movieIds);
+                            //
+                            for (let j = 0; j <= genresIds.length; j++) {
+                                if (genresIds[j] !== undefined && movieIds === genresIds[j].id) {
 
-                                // console.log(props.title, [genresIds[j].name]);
+                                    // console.log(props.title, [genresIds[j].name]);
+
+                                }
 
                             }
-
                         }
                     }
                 }

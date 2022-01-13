@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios'
 
 import BattleCard from "../components/Cards/BattleCard";
+import SpinnerPage from "../components/SpinerPage";
 
 class PopularBattle extends Component {
   state = {
@@ -54,53 +55,57 @@ class PopularBattle extends Component {
     const { indexFirstMovieOfCurrentBattle } = this.state;
     // console.log("localStorage.favorites", JSON.parse(localStorage.favorites));
 
-    return (
-      <>
-        <div
-          className="btn btn-outline-info offset-1 m-5 col-5"
-          onClick={() =>
-            this.updateIndexMovieBattle(
-              this.state.movies[indexFirstMovieOfCurrentBattle].id
-            )
-          }
-        >
-          <BattleCard
-            title={this.state.movies[indexFirstMovieOfCurrentBattle].title}
-            poster_path={
-              this.state.movies[indexFirstMovieOfCurrentBattle].poster_path
+    if (!this.state.movies) {
+      return <SpinnerPage />
+    } else {
+      return (
+        <>
+          <div
+            className="btn btn-outline-info offset-1 m-5 col-5"
+            onClick={() =>
+              this.updateIndexMovieBattle(
+                this.state.movies[indexFirstMovieOfCurrentBattle].id
+              )
             }
-            release_date={
-              this.state.movies[indexFirstMovieOfCurrentBattle].release_date
+          >
+            <BattleCard
+              title={this.state.movies[indexFirstMovieOfCurrentBattle].title}
+              poster_path={
+                this.state.movies[indexFirstMovieOfCurrentBattle].poster_path
+              }
+              release_date={
+                this.state.movies[indexFirstMovieOfCurrentBattle].release_date
+              }
+              overview={
+                this.state.movies[indexFirstMovieOfCurrentBattle].overview
+              }
+            />
+          </div>
+          <div
+            className="btn btn-outline-info m-5 col-5"
+            onClick={() =>
+              this.updateIndexMovieBattle(
+                this.state.movies[indexFirstMovieOfCurrentBattle + 1].id
+              )
             }
-            overview={
-              this.state.movies[indexFirstMovieOfCurrentBattle].overview
-            }
-          />
-        </div>
-        <div
-          className="btn btn-outline-info m-5 col-5"
-          onClick={() =>
-            this.updateIndexMovieBattle(
-              this.state.movies[indexFirstMovieOfCurrentBattle + 1].id
-            )
-          }
-        >
-          {/* <Favorites id={this.state.id} /> */}
-          <BattleCard
-            title={this.state.movies[indexFirstMovieOfCurrentBattle + 1].title}
-            poster_path={
-              this.state.movies[indexFirstMovieOfCurrentBattle + 1].poster_path
-            }
-            release_date={
-              this.state.movies[indexFirstMovieOfCurrentBattle + 1].release_date
-            }
-            overview={
-              this.state.movies[indexFirstMovieOfCurrentBattle + 1].overview
-            }
-          />
-        </div>
-      </>
-    );
+          >
+            {/* <Favorites id={this.state.id} /> */}
+            <BattleCard
+              title={this.state.movies[indexFirstMovieOfCurrentBattle + 1].title}
+              poster_path={
+                this.state.movies[indexFirstMovieOfCurrentBattle + 1].poster_path
+              }
+              release_date={
+                this.state.movies[indexFirstMovieOfCurrentBattle + 1].release_date
+              }
+              overview={
+                this.state.movies[indexFirstMovieOfCurrentBattle + 1].overview
+              }
+            />
+          </div>
+        </>
+      );
+    }
   }
 
   render() {

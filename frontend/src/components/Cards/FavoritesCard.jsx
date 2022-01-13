@@ -10,9 +10,11 @@ const FavoritesCard = (props) => {
         "https://www.mupload.nl/img/zymrod6nqov9t.jpg";
 
     return (
-        <MDBCol lg="2" className=' my-4'>
+        <MDBCol lg="2" className=' mt-4 mb-5'>
             <MDBCardGroup>
-                <div className="view zoom">
+                <div
+                    title={props.overview}
+                    className="view zoom ">
                     <MDBCardImage
                         top
                         src={image}
@@ -23,6 +25,7 @@ const FavoritesCard = (props) => {
                         className='img-fluid'
                     />
                 </div>
+
                 <div className='m-auto'>
                     <DeleteButtons
                         movies={props.movies}
