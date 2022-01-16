@@ -14,6 +14,8 @@ import Login from './views/Login';
 import PopularBattle from './views/PopularBattle';
 import Footer from './components/Footer';
 import ComingSoon from './views/ComingSoon';
+import TopRated from './views/TopRated';
+import TrailerPlayer from './components/TrailerPlayer';
 
 export default function App() {
   const [favorites, setFavorites] = useState([])
@@ -39,12 +41,13 @@ export default function App() {
   return (
     <BrowserRouter>
       <NavbarPage logout={logout} userConnected={userConnected} />
-
       <Switch>
         <Route path="/" exact component={Theaters} />
         <Route path="/coming-soon" exact component={ComingSoon} />
+        <Route path="/top-rated" exact component={TopRated} />
         <Route path="/favorites" exact component={Favorites} />
         <Route path="/popularBattle" exact component={PopularBattle} fav={favorites} />
+        <Route path="/trailer" exact component={TrailerPlayer} />
         <Route path="/connexion" exact component={ConnexionPage} />
         <Route path="/connexion/signup" exact component={Signup} />
         {/* <Route path="/connexion/login" exact component={Login} /> */}

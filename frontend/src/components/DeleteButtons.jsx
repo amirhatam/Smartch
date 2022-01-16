@@ -28,7 +28,8 @@ export default class deleteButtons extends Component {
             userList: updateList,
         });
 
-        axios.patch(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: updateList })
+        // axios.patch(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: updateList })
+        axios.patch(`/users/${localStorage.userId}/favorites`, { favorites: updateList })
 
         return window.location.reload(false);
     }

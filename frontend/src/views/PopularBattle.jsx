@@ -36,7 +36,8 @@ class PopularBattle extends Component {
 
     if (localStorage.userId && localStorage.favorites) {
 
-      axios.patch(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
+      // axios.patch(`http://localhost:8000/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
+      axios.patch(`/users/${localStorage.userId}/favorites`, { favorites: JSON.parse(localStorage.getItem("favorites")) })
         .then(res => {
           console.log(res);
           console.log(res.data);

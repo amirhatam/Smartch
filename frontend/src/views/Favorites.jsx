@@ -44,7 +44,8 @@ export default class Favorites extends Component {
     componentDidMount() {
 
         if (localStorage.userId) {
-            axios.get(`http://localhost:8000/users/${localStorage.userId}`)
+            // axios.get(`http://localhost:8000/users/${localStorage.userId}`)
+            axios.get(`/users/${localStorage.userId}`)
                 .then(res => {
 
                     const favorites = res.data.user.favorites

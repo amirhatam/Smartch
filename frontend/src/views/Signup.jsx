@@ -54,7 +54,9 @@ const Signup = () => {
 
   if (userCreated) {
     // return ("User created!")
-    return window.location.href = "http://localhost:3000/connexion/login"
+    // return window.location.href = "http://localhost:3000/connexion/login"
+    // return window.location.href = "/connexion/login"
+    return window.location.href = "/"
   } else {
 
     return (

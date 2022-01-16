@@ -1,4 +1,4 @@
-import { MDBRow, MDBCol, MDBCardBody, MDBBtn, MDBView, MDBMask, MDBIcon, MDBContainer } from "mdbreact";
+import { MDBRow, MDBCol, MDBCardBody, MDBBtn, MDBView, MDBMask, MDBIcon, MDBContainer, MDBNavLink } from "mdbreact";
 import React, { useEffect } from 'react';
 import LogoSignup from "../assets/images/signup.png"
 import LogoLogin from "../assets/images/login.png"
@@ -25,10 +25,15 @@ const ConnexionPage = () => {
                 <MDBMask overlay="white-slight" />
               </a>
             </MDBView>
-            <MDBCardBody className="pb-0">
-              <MDBBtn href="/connexion/login" color='blue' className="rounded-pill mb-5 " >
+            <MDBCardBody className="row justify-content-center pb-0">
+              <MDBCol md="5">
+                <MDBNavLink className="btn btn-primary rounded-pill" to="/connexion/login">
+                  <MDBIcon icon='user' className='mr-2 ' />Login
+                </MDBNavLink>
+              </MDBCol>
+              {/* <MDBBtn href="/connexion/login" color='blue' className="rounded-pill mb-5 " >
                 <MDBIcon icon='user' className='mr-2 ' />Login
-              </MDBBtn>
+              </MDBBtn> */}
             </MDBCardBody>
           </MDBCol>
 
@@ -43,10 +48,16 @@ const ConnexionPage = () => {
                 <MDBMask overlay="white-slight" />
               </a>
             </MDBView>
-            <MDBCardBody className="pb-0">
-              <MDBBtn href="/connexion/signup" color='blue' className="rounded-pill mb-5"  >
+            <MDBCardBody className="row justify-content-center pb-0">
+              <MDBCol md="5">
+                <MDBNavLink className="btn btn-primary rounded-pill" to="/connexion/signup">
+                  <MDBIcon icon='user' className='mr-2 ' /> Signup
+                </MDBNavLink>
+              </MDBCol>
+
+              {/* <MDBBtn href="/connexion/signup" color='blue' className="rounded-pill mb-5"  >
                 <MDBIcon icon='user' className='mr-2 ' /> Signup
-              </MDBBtn>
+              </MDBBtn> */}
             </MDBCardBody>
           </MDBCol>
         </MDBRow>

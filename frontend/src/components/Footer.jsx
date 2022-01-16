@@ -40,6 +40,11 @@ const Footer = () => {
                                         <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/coming-soon">Coming-Soon</MDBNavLink>
                                     </a>
                                 </li>
+                                <li className="list-unstyled  my-1">
+                                    <a className="" href="true">
+                                        <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/top-rated">Top-Rated</MDBNavLink>
+                                    </a>
+                                </li>
                                 <li className="list-unstyled my-1">
                                     <a className="" href="true">
                                         <MDBNavLink className="h6-fs d-inline text-white py-0 px-0" to="/popularBattle">PopularBattle</MDBNavLink>

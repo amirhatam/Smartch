@@ -29,6 +29,9 @@ class NavbarPage extends Component {
               <MDBNavItem >
                 <MDBNavLink to="/coming-soon">Coming-Soon</MDBNavLink>
               </MDBNavItem>
+              <MDBNavItem >
+                <MDBNavLink to="/top-rated">Top-Rated</MDBNavLink>
+              </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="/popularBattle">Popular-Battle</MDBNavLink>
               </MDBNavItem>

@@ -1,53 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBIcon, MDBCol, MDBCardGroup, MDBBtn } from 'mdbreact';
+import React from 'react'
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBIcon, MDBCol, MDBCardGroup, MDBBtn, MDBNavLink, MDBRow } from 'mdbreact';
 import "../../assets/styles/Card.css"
 import CollapsePage from '../CollapsePage';
 
 
 
 const Card = (props) => {
-    const [movieGenres, setMovieGenres] = useState(props.genre_ids)
-    const [genresIds, setGenresIds] = useState(props.genres)
-
-
-    const [array1, setArray1] = useState([])
 
 
 
-    useEffect(() => {
-        (async () => {
-            try {
-                //First all of the genres movie
-                if (movieGenres) {
-                    for (let i = 0; i < movieGenres.length; i++) {
-                        // console.log(movieGenres);
-                        if (movieGenres[i] !== undefined) {
-                            const movieIds = movieGenres[i]
-                            // console.log(movieIds);
-                            //
-                            for (let j = 0; j <= genresIds.length; j++) {
-                                if (genresIds[j] !== undefined && movieIds === genresIds[j].id) {
-
-                                    // console.log(props.title, [genresIds[j].name]);
-
-                                }
-
-                            }
-                        }
-                    }
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        })();
-    }, [])
-
-    // console.log("array1", array1);
-
-    // console.log("props.title", props.title);
-
-    // console.log("props.genres", props.genres);
-    // console.log("props.genre_ids", movieGenres);
     const review = props.overview ?
         props.overview :
         <p className='text-center'>Review Not Found !</p>
@@ -90,17 +51,26 @@ const Card = (props) => {
                             :
                             null
                         }
+                        <MDBRow className='justify-content-center'>
+                            <MDBCol size="5">
+                                <MDBBtn color="info" size="md" className=' rounded-pill p-3 m-0'
+                                    onClick={(e) => props.moviesFav(props.movieId)}
+                                    value={props.movieId}
+                                >
+                                    Add to Favorites
+                                </MDBBtn>
+                            </MDBCol>
+                            <MDBCol size="4">
+                                <MDBNavLink
+                                    onClick={(e) => localStorage.setItem("movieId", JSON.stringify(props.movieId))}
+                                    value={props.movieId}
+                                    to="/trailer"
+                                    className='btn btn-info rounded-pill px-0 m-0'
+                                >Play Trailer
+                                </MDBNavLink>
+                            </MDBCol>
 
-                        <MDBBtn color="info" size="md" className=' rounded-pill px-3'
-                            // onClick={props.userFavorites}
-                            // onClick={function (e) { props.userFavorites(e); props.updateList(e) }}
-                            onClick={(e) => props.moviesFav(props.movieId)}
-
-                            value={props.movieId}
-                        >
-                            Add to Favorites
-                        </MDBBtn>
-
+                        </MDBRow>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCardGroup>

@@ -33,7 +33,7 @@ function ComingSoon() {
     const [totalPage, setTotalPage] = useState([])
     const [items, setItems] = useState([]);
 
-
+    const url = "https://api.themoviedb.org/3";
     const apiKey = "e441f8a3a151d588a4932d2c5d310769";
     const today = moment().format("YYYY-MM-DD");
     const lastWeek = moment().add(30, "days").format("YYYY-MM-DD");
@@ -44,7 +44,7 @@ function ComingSoon() {
         try {
             let moviesData = []
 
-            const moviesDB = await axios.get(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${lastWeek}&api_key=${apiKey}&page=${currentPage}`)
+            const moviesDB = await axios.get(`${url}/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${lastWeek}&api_key=${apiKey}&page=${currentPage}`)
             if (moviesDB.status === 200) {
                 moviesData = Object.values(moviesDB.data.results)  //convert data format (objet to array)
                 // const finalList = moviesData.filter(e => e.poster_path !== null)  //filter the movies without images 
@@ -76,14 +76,14 @@ function ComingSoon() {
         (async () => {
             try {
                 let moviesData = []
-                // const genresDB = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`)
+                // const genresDB = await axios.get(`${url}/genre/movie/list?api_key=${apiKey}&language=en-US`)
                 // if (genresDB.status === 200) {
                 //     const finalList = genresDB.data.genres
 
                 //     setGenres(finalList)
                 // }
 
-                const moviesDB = await axios.get(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${lastWeek}&api_key=${apiKey}`)
+                const moviesDB = await axios.get(`${url}/discover/movie?primary_release_date.gte=${today}&primary_release_date.lte=${lastWeek}&api_key=${apiKey}`)
                 if (moviesDB.status === 200) {
                     // console.log(moviesDB.data.total_pages);
                     moviesData = Object.values(moviesDB.data.results)  //convert data format (objet to array)
@@ -109,7 +109,6 @@ function ComingSoon() {
             <MDBView >
                 <MDBContainer className='my-5'>
                     <h1 className="my-5 font-weight-light text-center" ><MDBIcon icon="film" /> Coming Soon</h1>
-
                     <Slider {...settings}>
                         {movies.map((elem) => {
                             return <Carousel
@@ -122,7 +121,7 @@ function ComingSoon() {
                         <div>
                         </div>
                     </Slider>
-                    <div>
+                    <div className='my-5 pt-3'>
                         <ReactPaginate
                             previousLabel={"Previous"}
                             nextLabel={"Next"}

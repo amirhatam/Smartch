@@ -25,7 +25,8 @@ const Login = (props) => {
       console.log("username", username)
       console.log("password", password)
 
-      const response = await axios.post("http://localhost:8000/user/login", { username: username, password: password })
+      // const response = await axios.post("http://localhost:8000/user/login", { username: username, password: password })
+      const response = await axios.post("/user/login", { username: username, password: password })
       console.log("Login User response", response)
 
       if (response.data.error) {
@@ -48,7 +49,8 @@ const Login = (props) => {
 
         // history.push("/")
 
-        axios.get(`http://localhost:8000/users/${userId}`)
+        // axios.get(`http://localhost:8000/users/${userId}`)
+        axios.get(`/users/${userId}`)
           .then(res => {
 
             const favorites = res.data.user.favorites
@@ -58,7 +60,8 @@ const Login = (props) => {
           })
 
         // return window.location.href = 
-        return window.location.href = "http://localhost:3000"
+        // return window.location.href = "http://localhost:3000"
+        return window.location.href = "/"
 
       }
     } catch (error) {

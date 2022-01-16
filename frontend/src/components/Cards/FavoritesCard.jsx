@@ -10,11 +10,13 @@ const FavoritesCard = (props) => {
         "https://www.mupload.nl/img/zymrod6nqov9t.jpg";
 
     return (
-        <MDBCol lg="2" className=' mt-4 mb-5'>
+        <MDBCol lg="2" className='mt-4 mb-5'>
             <MDBCardGroup>
                 <div
                     title={props.overview}
-                    className="view zoom ">
+                    className="view zoom "
+                >
+
                     <MDBCardImage
                         top
                         src={image}
@@ -22,7 +24,7 @@ const FavoritesCard = (props) => {
                         hover
                         waves
                         alt='MDBCard image cap'
-                        className='img-fluid'
+                        className='img-fluid '
                     />
                 </div>
 
